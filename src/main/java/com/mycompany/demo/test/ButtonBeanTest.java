@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ButtonBeanTest {
     @Test
     void testGetButtonModel() {
-
+        
     }
 
     @Test
