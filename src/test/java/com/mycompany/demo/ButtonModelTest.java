@@ -1,10 +1,7 @@
-package com.mycompany.demo.test;
-
-import com.mycompany.demo.ButtonBean;
-import com.mycompany.demo.ButtonModel;
-import static org.junit.jupiter.api.Assertions.*;
+package com.mycompany.demo;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class ButtonModelTest {
     @Test
