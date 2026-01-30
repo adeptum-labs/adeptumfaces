@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
 
-    <title>Button Demo</title>
+        <title>HELLO WORLD</title>
     
     </h:head>
     
+    <h:body>
+        
+        <h:form>
+            <h:commandButton value="#{buttonBean.buttonModel.label}" action="#{buttonBean.onClick}" />
+        </h:form>
+        
+        <h:dataTable value="#{ListBean.lists}" var="listmodel">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{ListModel.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{ListModel.name}
+            </h:column>
+        </h:dataTable>
+     
+    </h:body>
 
 </html>

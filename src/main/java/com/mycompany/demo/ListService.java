@@ -12,7 +12,7 @@ public class ListService {
         return Arrays.asList(
             new ListModel(1L, "NAME"),
             new ListModel(2L, "TEST")
-                    );
+            );
     }
     
 }
