@@ -13,4 +13,12 @@ public class ButtonModelTest {
     void testIsDisabled() {
 
     }
+    
+    @Test
+    void buttonModelStoresStateCorrectly() {
+        ButtonModel model = new ButtonModel("Save", true);
+
+        assertEquals("Save", model.getLabel());
+        assertTrue(model.isDisabled());
+    }
 }

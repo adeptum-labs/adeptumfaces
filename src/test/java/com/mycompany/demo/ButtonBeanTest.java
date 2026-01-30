@@ -15,4 +15,12 @@ public class ButtonBeanTest {
     void testOnClick() {
 
     }
+    
+    @Test
+    void buttonBeanCreatesEnabledButton() {
+        ButtonBean bean = new ButtonBean();
+
+        assertEquals("Click me", bean.getButtonModel().getLabel());
+        assertFalse(bean.getButtonModel().isDisabled());
+    }
 }
