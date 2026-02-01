@@ -15,7 +15,9 @@
             action="#{buttonBean.onClick}" />
     </h:form>
 
-    <h:dataTable value="#{listBean.lists}" var="list" border="1">
+    <h:dataTable value="#{listBean.lists}" var="list">
+
+    <h:dataTable value="#{listBean.lists}" var="list" styleClass="table">
         <h:column>
             <f:facet name="header">Id</f:facet>
             #{list.id}
