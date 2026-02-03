@@ -12,7 +12,7 @@
         <jakartaee>11.0.0-M1</jakartaee>
     </properties>
     
-            <dependencyManagement>
+        <dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.junit</groupId>
@@ -21,17 +21,17 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-              </dependencies>
-</dependencyManagement>
+                </dependencies>
+        </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakartaee}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
+        <dependencies>
+                <dependency>
+                        <groupId>jakarta.platform</groupId>
+                        <artifactId>jakarta.jakartaee-api</artifactId>
+                        <version>${jakartaee}</version>
+                        <scope>provided</scope>
+                </dependency>
+                <dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
@@ -42,11 +42,20 @@
 			<scope>test</scope>
 		</dependency>
         
-        <dependency>
-            <groupId>org.omnifaces</groupId>
-            <artifactId>omnifaces</artifactId>
-            <version>5.0</version>
-        </dependency>
+                <dependency>
+                        <groupId>org.omnifaces</groupId>
+                        <artifactId>omnifaces</artifactId>
+                        <version>5.0</version>
+                </dependency>
+        
+                <dependency>
+                        <groupId>org.primefaces</groupId>
+                        <artifactId>primefaces</artifactId>
+                        <version>15.0.6</version>
+                        <scope>compile</scope>
+                        <classifier>jakarta</classifier>
+                </dependency>
+        
     </dependencies>
 
     <build>

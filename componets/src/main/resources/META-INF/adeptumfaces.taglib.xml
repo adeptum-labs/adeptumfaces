@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+<facelet-taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_4_0.xsd" 
+                version="4.0">
+    
+    <description>AdeptumFaces UI components.</description>
+    <namespace>http://adeptumfaces.org/ui</namespace>
+    <short-name>a</short-name>
+    
+    <function>
+        <function-name>resolveClientId</function-name>
+        <function-class>org.primefaces.expression.SearchExpressionUtils</function-class>
+        <function-signature>java.lang.String resolveClientId(java.lang.String, jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>resolveComponent</function-name>
+        <function-class>org.primefaces.expression.SearchExpressionUtils</function-class>
+        <function-signature>jakarta.faces.component.UIComponent resolveComponent(java.lang.String, jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>resolveClientIds</function-name>
+        <function-class>org.primefaces.expression.SearchExpressionUtils</function-class>
+        <function-signature>java.lang.String resolveClientIds(java.lang.String, jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>resolveWidgetVar</function-name>
+        <function-class>org.primefaces.expression.SearchExpressionUtils</function-class>
+        <function-signature>java.lang.String resolveWidgetVar(java.lang.String, jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>closestWidgetVar</function-name>
+        <function-class>org.primefaces.expression.SearchExpressionUtils</function-class>
+        <function-signature>java.lang.String closestWidgetVar(jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>resolveFirstComponentWithId</function-name>
+        <function-class>org.primefaces.util.ComponentTraversalUtils</function-class>
+        <function-signature>jakarta.faces.component.UIComponent firstWithId(java.lang.String,jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>shouldRenderFacet</function-name>
+        <function-class>org.primefaces.util.FacetUtils</function-class>
+        <function-signature>java.lang.Boolean shouldRenderFacet(jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>escapeJavaScriptVarName</function-name>
+        <function-class>org.primefaces.util.EscapeUtils</function-class>
+        <function-signature>java.lang.String forJavaScriptVarName(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <function-name>dynamicColumnValue</function-name>
+        <function-class>org.primefaces.util.ComponentUtils</function-class>
+        <function-signature>java.lang.Object getDynamicColumnValue(jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+    <function>
+        <function-name>dynamicColumnValueAsString</function-name>
+        <function-class>org.primefaces.util.ComponentUtils</function-class>
+        <function-signature>java.lang.String getDynamicColumnValueAsString(jakarta.faces.component.UIComponent)</function-signature>
+    </function>
+
+    <function>
+        <function-name>ifGranted</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>boolean ifGranted(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <function-name>ifAllGranted</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>boolean ifAllGranted(java.lang.Object)</function-signature>
+    </function>
+
+    <function>
+        <function-name>ifAnyGranted</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>boolean ifAnyGranted(java.lang.Object)</function-signature>
+    </function>
+
+    <function>
+        <function-name>ifNoneGranted</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>boolean ifNoneGranted(java.lang.Object)</function-signature>
+    </function>
+
+    <function>
+        <function-name>remoteUser</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>java.lang.String remoteUser()</function-signature>
+    </function>
+
+    <function>
+        <function-name>userPrincipal</function-name>
+        <function-class>org.primefaces.util.SecurityUtils</function-class>
+        <function-signature>java.security.Principal userPrincipal()</function-signature>
+    </function>
+
+    <function>
+        <function-name>language</function-name>
+        <function-class>org.primefaces.util.LocaleUtils</function-class>
+        <function-signature>java.lang.String getCurrentLanguage()</function-signature>
+    </function>
+    
+</facelet-taglib>
+
+
+
+<root>
+    
+</root>
+
