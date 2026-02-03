@@ -55,6 +55,12 @@
                         <scope>compile</scope>
                         <classifier>jakarta</classifier>
                 </dependency>
+
+                <dependency>
+                        <groupId>org.primefaces.cdk</groupId>
+                        <artifactId>primefaces-cdk</artifactId>
+                         <version>15.0.6</version>
+                </dependency>
         
     </dependencies>
 
