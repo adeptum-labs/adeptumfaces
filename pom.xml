@@ -4,7 +4,7 @@
 	<groupId>com.adeptum</groupId>
 	<artifactId>adeptumfaces</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>war</packaging>
 	<name>AdeptumFaces</name>
     
 	<properties>
@@ -48,12 +48,6 @@
 			<version>5.0</version>
 		</dependency>
 	</dependencies>
-
-	<modules>
-		<module>components</module>
-	 <module>showcase</module>
-	 <module>componets</module>
-	</modules>
 
 	<build>
 		<plugins>
