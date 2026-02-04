@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
-      xmlns:a="http://adeptumfaces.org/ui">
+      xmlns:f="jakarta.faces.core">
 
 <h:head>
     <h:title>HELLO WORLD</h:title>
@@ -15,10 +14,8 @@
             value="#{buttonBean.buttonModel.label}"
             action="#{buttonBean.onClick}" />
     </h:form>
-        
-        <a:commandButton/>
 
-    <h:dataTable value="#{listBean.lists}" var="list" styleClass="table">
+    <h:dataTable value="#{listBean.lists}" var="list">
         <h:column>
             <f:facet name="header">Id</f:facet>
             #{list.id}
