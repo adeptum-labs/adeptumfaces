@@ -16,8 +16,15 @@ public class FacesComponentUtils {
         
         public static Map<String, List<String>> getRequestParams() {
         return FacesContext.getCurrentInstance()
-                .getExternalContext()
-                .getRequestParameterValuesMap();
+        .getExternalContext()
+        .getRequestParameterValuesMap();
+
+        public static Map<String, String> getRequestParamMap() {
+         return FacesContext.getCurrentInstance()
+        .getExternalContext()
+        .getRequestParameterMap();
+}
+
     }
         
 }
