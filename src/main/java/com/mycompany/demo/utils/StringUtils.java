@@ -6,7 +6,7 @@ package com.mycompany.demo.utils;
 
 
 
-public class StringUtils {
+public final class StringUtils {
         
         private StringUtils(){}
         
