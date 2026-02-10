@@ -4,97 +4,82 @@
  */
 package com.mycompany.demo.Button;
 
-import org.primefaces.renderkit.OutcomeTargetRenderer;
-import org.primefaces.util.EscapeUtils;
-import org.primefaces.util.HTML;
-import org.primefaces.util.SharedStringBuilder;
-import org.primefaces.util.WidgetBuilder;
-
-import java.io.IOException;
+import com.mycompany.demo.utils.HtmlConstants;
+import com.mycompany.demo.utils.JsEscapeUtils;
+import com.mycompany.demo.utils.StringUtils;
 
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 import jakarta.faces.render.FacesRenderer;
+import jakarta.faces.render.Renderer;
 
-@FacesRenderer(rendererType = Button.DEFAULT_RENDERER, componentFamily = Button.COMPONENT_FAMILY)
-public class ButtonRenderer extends OutcomeTargetRenderer<Button> {
+import java.io.IOException;
 
-    private static final String SB_BUILD_ONCLICK = ButtonRenderer.class.getName() + "#buildOnclick";
 
-    @Override
-    public void encodeEnd(FacesContext context, Button component) throws IOException {
-        encodeMarkup(context, component);
-        encodeScript(context, component);
-    }
+@FacesRenderer(componentFamily = ButtonBase.COMPONENT_FAMILY, rendererType = "demo.ButtonRenderer")
+public class ButtonRenderer extends Renderer {
 
-    public void encodeMarkup(FacesContext context, Button component) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-        String clientId = component.getClientId(context);
-        Object value = component.getValue();
-        String icon = component.getIcon();
-        String title = component.getTitle();
-
-        writer.startElement("button", component);
-        writer.writeAttribute("id", clientId, "id");
-        writer.writeAttribute("name", clientId, "name");
-        writer.writeAttribute("type", "button", null);
-        writer.writeAttribute("class", component.resolveStyleClass(), "styleClass");
-
-        renderPassThruAttributes(context, component, HTML.BUTTON_WITHOUT_CLICK_ATTRS);
-
-        if (component.isDisabled()) {
-            writer.writeAttribute("disabled", "disabled", "disabled");
+        @Override
+        public void encodeEnd(FacesContext context, jakarta.faces.component.UIComponent comp) throws IOException {
+                Button component = (Button) comp;
+                ResponseWriter writer = context.getResponseWriter();
+                String clientid = component.getClientId(context);
+        
+                writer.startElement("button", component);
+                writer.writeAttribute("id", clientId, null);
+                writer.writeAttribute("name", clientId, null);
+                writer.writeAttribute("type", "button", null);
+                writer.writeAttribute("class", component.resolveStyleClass(), null);
+        
+        if (component.isDisabled()){
+                writer.writeAttribute("disabled", "disabled", null);
         }
-
-        writer.writeAttribute("onclick", buildOnclick(context, component), null);
-
-        //icon
-        if (!isValueBlank(icon)) {
-            String defaultIconClass = component.getIconPos().equals("left") ? HTML.BUTTON_LEFT_ICON_CLASS : HTML.BUTTON_RIGHT_ICON_CLASS;
-            String iconClass = defaultIconClass + " " + icon;
-
-            writer.startElement("span", null);
-            writer.writeAttribute("class", iconClass, null);
-            writer.endElement("span");
+        
+        String onclick = buildOnclick(context, component);
+        if (StringUtils.isNotBlank(onclick)) {
+                writer.writeAttribute("onclick", onclick, null);
         }
+        
+        // Icon
+        if (StringUtils.isNotBlank(component.getIcon())) {
+                String iconClass = component.getIconPos().equals("left")
+                        ? HtmlConstants.BUTTON_LEFT_ICON
+                        : HtmlConstants.BUTTON_RIGHT_ICON;
 
-        //text
+                writer.startElement("span", null);
+                writer.writeAttribute("class", iconClass + " " + component.getIcon(), null);
+                writer.endElement("span");
+        }
+        
+        // Text
         writer.startElement("span", null);
-        writer.writeAttribute("class", HTML.BUTTON_TEXT_CLASS, null);
+        writer.writeAttribute("class", HtmlConstants.BUTTON_TEXT, null);
 
-        renderButtonValue(writer, component.isEscape(), value, title, component.getAriaLabel());
+        Object value = component.getValue();
+        if (value != null) {
+            writer.writeText(value.toString(), null);
+        }
 
         writer.endElement("span");
-
         writer.endElement("button");
-    }
-
-    public void encodeScript(FacesContext context, Button component) throws IOException {
-        WidgetBuilder wb = getWidgetBuilder(context);
-        wb.init("Button", component);
-        wb.finish();
-    }
-
-    protected String buildOnclick(FacesContext context, Button component) {
-        String userOnclick = component.getOnclick();
-        StringBuilder onclick = SharedStringBuilder.get(context, SB_BUILD_ONCLICK);
-        String targetURL = getTargetURL(context, component);
-
-        if (userOnclick != null) {
-            onclick.append(userOnclick).append(";");
         }
 
-        String onclickBehaviors = getEventBehaviors(context, component, "click", null);
-        if (onclickBehaviors != null) {
-            onclick.append(onclickBehaviors).append(";");
+        private String buildOnclick(FacesContext context, Button component) {
+                StringBuilder sb = new StringBuilder();
+
+                if (component.getOnclick() != null) {
+                        sb.append(component.getOnclick()).append(";");
+                }
+
+                String url = component.getOutcome();
+                if (url != null) {
+                        sb.append("window.open('")
+                        .append(JsEscapeUtils.escape(url))
+                        .append("','")
+                        .append(JsEscapeUtils.escape(component.getTarget()))
+                        .append("');");
+                }
+
+                return sb.toString();
         }
-
-        if (targetURL != null) {
-            onclick.append("window.open('").append(EscapeUtils.forJavaScript(targetURL)).append("','");
-            onclick.append(EscapeUtils.forJavaScript(component.getTarget())).append("')");
-        }
-
-        return onclick.toString();
-    }
-
 }

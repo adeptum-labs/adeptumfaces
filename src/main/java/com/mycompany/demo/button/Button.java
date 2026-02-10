@@ -4,56 +4,50 @@
  */
 package com.mycompany.demo.Button;
 
-import org.primefaces.cdk.api.FacesComponentDescription;
-import org.primefaces.util.ComponentUtils;
-import org.primefaces.util.HTML;
-import org.primefaces.util.LangUtils;
+import com.mycompany.demo.utils.HtmlConstants;
+import com.mycompany.demo.utils.StringUtils;
+import com.mycompany.demo.utils.FacesComponentUtils;
 
+import jakarta.faces.component.FacesComponent;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.faces.application.ResourceDependency;
-import jakarta.faces.component.FacesComponent;
+@FacesComponent(value = Button.COMPONENT_TYPE)
+public class Button extends ButtonBase {
 
-@FacesComponent(value = Button.COMPONENT_TYPE, namespace = Button.COMPONENT_FAMILY)
-@FacesComponentDescription("Button is an extension to the standard h:button component with skinning capabilities.")
-@ResourceDependency(library = "primefaces", name = "components.css")
-@ResourceDependency(library = "primefaces", name = "jquery/jquery.js")
-@ResourceDependency(library = "primefaces", name = "core.js")
-@ResourceDependency(library = "primefaces", name = "components.js")
-public class Button extends ButtonBaseImpl {
+        public static final String COMPONENT_TYPE = "demo.Button";
 
-    public static final String COMPONENT_TYPE = "org.primefaces.component.Button";
+        public String resolveStyleClass() {
+                String icon = getIcon();
+                Object value = getValue();
+                String styleClass = "";
 
-    public String resolveStyleClass() {
-        String icon = getIcon();
-        Object value = getValue();
-        String styleClass = "";
+                if (value != null && StringUtils.isBlank(icon)) {
+                        styleClass = HtmlConstants.BUTTON_TEXT_ONLY;
+                }
+                
+                else if (value != null && StringUtils.isNotBlank(icon)) {
+                        styleClass = getIconPos().equals("left")
+                        ? HtmlConstants.BUTTON_TEXT_ICON_LEFT
+                        : HtmlConstants.BUTTON_TEXT_ICON_RIGHT;
+                }
+                
+                else if (value == null && StringUtils.isNotBlank(icon)) {
+                        styleClass = HtmlConstants.BUTTON_ICON_ONLY;
+                }
 
-        if (value != null && LangUtils.isBlank(icon)) {
-            styleClass = HTML.BUTTON_TEXT_ONLY_BUTTON_CLASS;
-        }
-        else if (value != null && LangUtils.isNotBlank(icon)) {
-            styleClass = getIconPos().equals("left") ? HTML.BUTTON_TEXT_ICON_LEFT_BUTTON_CLASS : HTML.BUTTON_TEXT_ICON_RIGHT_BUTTON_CLASS;
-        }
-        else if (value == null && LangUtils.isNotBlank(icon)) {
-            styleClass = HTML.BUTTON_ICON_ONLY_BUTTON_CLASS;
-        }
+                if (isDisabled()) {
+                        styleClass += " ui-state-disabled";
+                }
 
-        if (isDisabled()) {
-            styleClass = styleClass + " ui-state-disabled";
-        }
+                if (getStyleClass() != null) {
+                        styleClass += " " + getStyleClass();
+                }
 
-        String userStyleClass = getStyleClass();
-        if (userStyleClass != null) {
-            styleClass = styleClass + " " + userStyleClass;
+                return styleClass.trim();
         }
 
-        return styleClass;
-    }
-
-    @Override
-    public Map<String, List<String>> getParams() {
-        return ComponentUtils.getUIParams(this);
-    }
+        public Map<String, List<String>> getParams() {
+                return FacesComponentUtils.getRequestParams();
+        }
 }
