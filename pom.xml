@@ -47,22 +47,7 @@
                         <artifactId>omnifaces</artifactId>
                         <version>5.0</version>
                 </dependency>
-        
-                <dependency>
-                        <groupId>org.primefaces</groupId>
-                        <artifactId>primefaces</artifactId>
-                        <version>15.0.6</version>
-                        <scope>compile</scope>
-                        <classifier>jakarta</classifier>
-                </dependency>
-
-                <dependency>
-                        <groupId>org.primefaces.cdk</groupId>
-                        <artifactId>primefaces-cdk</artifactId>
-                         <version>15.0.6</version>
-                </dependency>
-        
-    
+       
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
