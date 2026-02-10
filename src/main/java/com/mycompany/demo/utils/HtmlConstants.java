@@ -6,9 +6,13 @@ package com.mycompany.demo.utils;
 
 import java.util.Set;
 
-public class HtmlConstants {
+public final class HtmlConstants {
         
-        private HtmlConstants() {}
+        private HtmlConstants() {
+        
+                // Utility class
+
+        }
 
     // Button CSS classes
     public static final String BUTTON_TEXT_ONLY = "ui-button-text-only";

@@ -4,9 +4,15 @@
  */
 package com.mycompany.demo.utils;
 
-public class JsEscapeUtils {
+        /**
+         * Utility method att hoppa över från Javascript values,
+         */
+
+public final class JsEscapeUtils {
         
-        private JsEscapeUtils() {}
+        private JsEscapeUtils() {
+            // Utility class
+        }
 
     public static String escape(String value) {
         if (value == null) {
