@@ -1,0 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.demo.utils;
+
+
+import java.util.List;
+
+public class PaginationUtils {
+        
+        public static <T> Page<T> paginate(List<T> data, int first, int pageSize) {
+                int total = data.size();
+                int toIndex = Math.min(first + pageSize, total);
+
+                if (first > total) {
+                        first = 0;
+                }
+
+                List<T> pageContent = data.subList(first, toIndex);
+
+                return new Page<>(pageContent, total, first, pageSize);
+        }
+        
+}

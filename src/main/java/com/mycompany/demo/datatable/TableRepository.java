@@ -1,5 +1,8 @@
 package com.mycompany.demo.datatable;
 
+import com.mycompany.demo.utils.Page;
+import com.mycompany.demo.utils.PaginationUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +16,8 @@ public class TableRepository {
         }
     }
 
-    public List<ListModel> find(int first, int pageSize) {
-        int toIndex = Math.min(first + pageSize, DATA.size());
-        return DATA.subList(first, toIndex);
+    public Page<ListModel> findPage(int first, int pageSize) {
+        return PaginationUtils.paginate(DATA, first, pageSize);
     }
 
     public int count() {
