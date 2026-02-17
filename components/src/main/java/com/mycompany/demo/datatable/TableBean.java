@@ -1,11 +1,8 @@
 package com.mycompany.demo.datatable;
 
 import com.mycompany.demo.utils.Page;
-import com.mycompany.demo.utils.PaginationUtils;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import java.util.List;
 
 @Named
 @RequestScoped
