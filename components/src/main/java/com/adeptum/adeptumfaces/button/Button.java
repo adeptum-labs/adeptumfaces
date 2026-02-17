@@ -1,3 +1,4 @@
+
 package com.adeptum.adeptumfaces.button;
 
 import com.adeptum.adeptumfaces.util.FacesComponentUtils;
@@ -8,9 +9,13 @@ import java.util.Map;
 
 @FacesComponent(value = Button.COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
-        public static final String COMPONENT_TYPE = "com.adeptum.adeptumfaces.button.Button";
+	public static final String COMPONENT_TYPE = "com.adeptum.adeptumfaces.button.Button";
 
-        public Map<String, List<String>> getParams() {
-                return FacesComponentUtils.getRequestParams();
-        }
+	public Button() {
+		setRendererType(ButtonRenderer.RENDERER_TYPE);
+	}
+
+	public Map<String, List<String>> getParams() {
+		return FacesComponentUtils.getRequestParams();
+	}
 }

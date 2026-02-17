@@ -13,8 +13,10 @@ import jakarta.faces.render.Renderer;
 
 import java.io.IOException;
 
-@FacesRenderer(componentFamily = ButtonBase.COMPONENT_FAMILY, rendererType = "com.adeptum.adeptumfaces.button.ButtonRenderer")
+@FacesRenderer(componentFamily = ButtonBase.COMPONENT_FAMILY, rendererType = ButtonRenderer.RENDERER_TYPE)
 public class ButtonRenderer extends Renderer {
+	public static final String RENDERER_TYPE = "com.adeptum.adeptumfaces.button.ButtonRenderer";
+
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent comp) throws IOException {
 		System.out.println("HEJSAN SVEJSAN!");
@@ -66,7 +68,6 @@ public class ButtonRenderer extends Renderer {
 				.append(JsEscapeUtils.escape(component.getTarget()))
 				.append("');");
 		}*/
-
 		return sb.toString();
 	}
 }

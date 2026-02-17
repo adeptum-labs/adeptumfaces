@@ -9,18 +9,10 @@ import jakarta.faces.component.html.HtmlOutcomeTargetButton;
 
 public abstract class ButtonBase extends HtmlOutcomeTargetButton {
 
-        public static final String COMPONENT_FAMILY = "demo.components";
+        public static final String COMPONENT_FAMILY = HtmlOutcomeTargetButton.COMPONENT_FAMILY;
     
         @Override
         public String getFamily(){
                 return COMPONENT_FAMILY;
         }
-    
-        public abstract boolean isDisabled();
-        public abstract String getIcon();
-        public abstract String getIconPos();
-        public abstract String getTarget();
-        public abstract boolean isEscape();
-        public abstract boolean isInline();
-        public abstract String getAriaLabel();
 }
