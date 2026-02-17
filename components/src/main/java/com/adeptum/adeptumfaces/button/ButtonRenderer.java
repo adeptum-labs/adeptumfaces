@@ -24,6 +24,8 @@ public class ButtonRenderer extends Renderer {
 		ResponseWriter writer = context.getResponseWriter();
 		String clientid = component.getClientId(context);
 
+		System.out.println("direction: " + component.getDir());
+
 		writer.startElement("button", component);
 		writer.writeAttribute("id", comp.getId(), null);
 		writer.writeAttribute("name", comp.getId(), null);
