@@ -30,6 +30,11 @@
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.adeptum.adeptumfaces</groupId>
+			<artifactId>components</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

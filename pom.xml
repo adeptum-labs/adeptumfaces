@@ -9,6 +9,7 @@
  
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	 <maven.compiler.release>11</maven.compiler.release>
 	</properties>
 
 	<modules>
@@ -27,13 +28,13 @@
 			<dependency>
 				<groupId>jakarta.platform</groupId>
 				<artifactId>jakarta.jakartaee-api</artifactId>
-				<version>11.0.0</version>
+				<version>10.0.0</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.omnifaces</groupId>
 				<artifactId>omnifaces</artifactId>
-				<version>5.0</version>
+				<version>4.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>
