@@ -2,7 +2,6 @@
 package com.adeptum.adeptumfaces.button;
 
 import com.adeptum.adeptumfaces.util.HtmlConstants;
-import com.adeptum.adeptumfaces.util.JsEscapeUtils;
 import com.adeptum.adeptumfaces.util.StringUtils;
 import jakarta.faces.component.UIComponent;
 
@@ -13,7 +12,7 @@ import jakarta.faces.render.Renderer;
 
 import java.io.IOException;
 
-@FacesRenderer(componentFamily = ButtonBase.COMPONENT_FAMILY, rendererType = ButtonRenderer.RENDERER_TYPE)
+@FacesRenderer(componentFamily = Button.COMPONENT_FAMILY, rendererType = ButtonRenderer.RENDERER_TYPE)
 public class ButtonRenderer extends Renderer {
 	public static final String RENDERER_TYPE = "com.adeptum.adeptumfaces.button.ButtonRenderer";
 
