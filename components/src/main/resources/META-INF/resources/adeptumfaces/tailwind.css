@@ -1,3 +1,32 @@
-button {
-	background-color: red;
+button,
+input[type="submit"] {
+    background-color: #dc2626;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #b91c1c;
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: scale(0.97);
+}
+
+button:disabled,
+input[type="submit"]:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+body {
+    background-color: rgb(116, 140, 157) !important;
 }
