@@ -1,11 +1,6 @@
 
 package com.adeptum.adeptumfaces.commandbutton;
 
-import jakarta.faces.application.ResourceDependency;
-import jakarta.faces.component.FacesComponent;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.event.FacesEvent;
-
 import jakarta.faces.component.FacesComponent;
 
 @FacesComponent(CommandButtonBase.COMPONENT_TYPE)
