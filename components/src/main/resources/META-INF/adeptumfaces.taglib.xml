@@ -245,4 +245,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
+        
+        <tag>
+                <tag-name>commandbutton</tag-name>
+                <component>
+                        <component-type>com.adeptum.adeptumfaces.commandbutton.CommandButton</component-type>
+                        <renderer-type>com.adeptum.adeptumfaces.commandbutton.CommandButtonRenderer</renderer-type>
+                </component>
+        </tag>
 </facelet-taglib>
