@@ -1,6 +1,7 @@
 
 package com.adeptum.adeptumfaces.commandbutton;
 
+import com.adeptum.adeptumfaces.annotation.Attribute;
 import jakarta.el.MethodExpression;
 import jakarta.faces.component.FacesComponent;
 import jakarta.faces.component.html.HtmlCommandButton;
@@ -16,6 +17,9 @@ public abstract class CommandButtonBase extends HtmlCommandButton {
 
     public static final String DEFAULT_RENDERER =
             "com.adeptum.adeptumfaces.commandbutton.CommandButtonRenderer";
+
+    @Attribute(name = "icon", required = false, description = "Icon of the button.")
+    private String icon;
 
     protected enum PropertyKeys {
         ajax,

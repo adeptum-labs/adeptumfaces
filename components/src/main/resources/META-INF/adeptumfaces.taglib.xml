@@ -251,6 +251,13 @@
                 <component>
                         <component-type>com.adeptum.adeptumfaces.commandbutton.CommandButton</component-type>
                         <renderer-type>com.adeptum.adeptumfaces.commandbutton.CommandButtonRenderer</renderer-type>
+			<handler-class>com.adeptum.adeptumfaces.handler.TailwindTagHandler</handler-class>
                 </component>
+		<attribute>
+			<description><![CDATA[Icon of the button.]]></description>
+			<name>icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
         </tag>
 </facelet-taglib>
