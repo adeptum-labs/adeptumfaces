@@ -15,7 +15,10 @@
                         Counter value: #{counterBean.count}
                 </h:panelGroup>
                 <h:form>
-                        <h:commandButton value="Increment" action="#{counterBean.increment}"/>
+                        <a:commandbutton value="Increment" icon="pi pi-plus" ajax="true" action="#{counterBean.increment}"/>
+                </h:form>
+                <h:form>
+                        <a:commandbutton value="Reset" icon="pi pi-refresh" ajax="true" confirmationScript="if(!confirm('Reset counter?')) return false;" action="#{counterBean.reset}"/>
                 </h:form>
 	</h:body>
 </html>

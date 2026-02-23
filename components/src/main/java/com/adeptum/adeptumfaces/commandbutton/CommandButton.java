@@ -4,10 +4,11 @@ package com.adeptum.adeptumfaces.commandbutton;
 import com.adeptum.adeptumfaces.annotation.Attribute;
 import jakarta.el.MethodExpression;
 import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.html.HtmlCommandButton;
 import jakarta.faces.component.html.HtmlOutcomeTargetButton;
 
 @FacesComponent(CommandButton.COMPONENT_TYPE)
-public class CommandButton extends HtmlOutcomeTargetButton {
+public class CommandButton extends HtmlCommandButton {
 
     /*public String resolveStyleClass() {
 
@@ -72,7 +73,8 @@ public class CommandButton extends HtmlOutcomeTargetButton {
         renderDisabledClick,
         ariaLabel,
         disableOnAjax,
-        confirmationScript
+        confirmationScript,
+        type
     }
 
     public CommandButton() {
@@ -86,7 +88,7 @@ public class CommandButton extends HtmlOutcomeTargetButton {
 
     public MethodExpression getAction() {
             System.out.println("test");
-        return null;
+        return getActionExpression();
     }
 
     public boolean isAjax() {
@@ -171,5 +173,13 @@ public class CommandButton extends HtmlOutcomeTargetButton {
 
     public boolean requiresConfirmation() {
         return getConfirmationScript() != null;
+    }
+    
+    public String getType() {
+            return (String) getStateHelper().eval(PropertyKeys.type, "submit");
+    }
+    
+    public void setType(String type) {
+        getStateHelper().put(PropertyKeys.type, type);
     }
 }

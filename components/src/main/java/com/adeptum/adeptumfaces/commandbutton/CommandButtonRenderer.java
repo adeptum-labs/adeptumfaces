@@ -101,7 +101,7 @@ public class CommandButtonRenderer extends Renderer {
                 writer.endElement("button");
         }
 
-        /*private String resolveButtonType(CommandButton button) {
+        private String resolveButtonType(CommandButton button) {
                 String type = button.getType();
 
                 if (type == null) {
@@ -109,7 +109,7 @@ public class CommandButtonRenderer extends Renderer {
                 }
 
                 return type;
-        }*/
+        }
 
         private String buildOnclick(FacesContext context, CommandButton button) {
 
