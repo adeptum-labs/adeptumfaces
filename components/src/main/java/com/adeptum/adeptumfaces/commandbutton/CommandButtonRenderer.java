@@ -41,7 +41,7 @@ public class CommandButtonRenderer extends Renderer {
                 ResponseWriter writer = context.getResponseWriter();
 
                 String clientId = button.getClientId(context);
-                String type = resolveButtonType(button);
+                /*String type = resolveButtonType(button);*/
                 /*String styleClass = button.resolveStyleClass();*/
                 String icon = button.getIcon();
                 Object value = button.getValue();
@@ -50,7 +50,7 @@ public class CommandButtonRenderer extends Renderer {
 
                 writer.writeAttribute("id", clientId, null);
                 writer.writeAttribute("name", clientId, null);
-                writer.writeAttribute("type", type, null);
+                /*writer.writeAttribute("type", type, null);*/
 
                 /*if (styleClass != null) {
                         writer.writeAttribute("class", styleClass, null);
@@ -101,7 +101,7 @@ public class CommandButtonRenderer extends Renderer {
                 writer.endElement("button");
         }
 
-        private String resolveButtonType(CommandButton button) {
+        /*private String resolveButtonType(CommandButton button) {
                 String type = button.getType();
 
                 if (type == null) {
@@ -109,7 +109,7 @@ public class CommandButtonRenderer extends Renderer {
                 }
 
                 return type;
-        }
+        }*/
 
         private String buildOnclick(FacesContext context, CommandButton button) {
 

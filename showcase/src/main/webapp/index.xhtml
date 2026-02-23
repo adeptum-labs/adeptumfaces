@@ -8,11 +8,14 @@
 	<h:body>
 		<h:outputText value="JSF fungerar!" />
 		<h:form>
-			<a:button icon="heheh" dir="bananas" value="Hej hej" href="finns-ej.html"/>
+			
 			<h:button dir="RTL" value="Hej2 hej2" />
 		</h:form>
+                <h:panelGroup id="counterPanel" layout="block" style="font-size:24px; margin-bottom:20px;">
+                        Counter value: #{counterBean.count}
+                </h:panelGroup>
                 <h:form>
-                        <a:commandbutton value="Click"/>
+                        <h:commandButton value="Increment" action="#{counterBean.increment}"/>
                 </h:form>
 	</h:body>
 </html>
