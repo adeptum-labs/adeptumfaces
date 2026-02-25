@@ -40,6 +40,11 @@ public class ButtonRenderer extends Renderer {
 		if (StringUtils.isNotBlank(onclick)) {
 			writer.writeAttribute("onclick", onclick, null);
 		}
+		String onclick = buildOnclick(context, component);
+
+		if (onclick != null && !onclick.isEmpty()) {
+    	writer.writeAttribute("onclick", onclick, null);
+		}
 
 		// Text
 		writer.startElement("span", null);
@@ -54,21 +59,23 @@ public class ButtonRenderer extends Renderer {
 		writer.endElement("button");
 	}
 
-	private String buildOnclick(FacesContext context, Button component) {
-		StringBuilder sb = new StringBuilder();
+private String buildOnclick(FacesContext context, Button component) {
 
-		if (component.getOnclick() != null) {
-			sb.append(component.getOnclick()).append(";");
-		}
+    StringBuilder sb = new StringBuilder();
 
-		/*String url = component.getOutcome();
-		if (url != null) {
-			sb.append("window.open('")
-				.append(JsEscapeUtils.escape(url))
-				.append("','")
-				.append(JsEscapeUtils.escape(component.getTarget()))
-				.append("');");
-		}*/
-		return sb.toString();
-	}
+    if (component.getOnclick() != null) {
+        sb.append(component.getOnclick()).append(";");
+    }
+
+    String outcome = component.getOutcome();
+
+    if (outcome != null) {
+        sb.append("window.location.href='")
+          .append(context.getApplication()
+                         .getViewHandler()
+                         .getActionURL(context, outcome))
+          .append("';");
+    }
+
+    return sb.toString();
 }
