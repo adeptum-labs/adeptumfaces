@@ -27,37 +27,32 @@ public class ButtonRenderer extends Renderer {
 		System.out.println("direction: " + component.getDir());
 
 		writer.startElement("button", component);
-		writer.writeAttribute("id", comp.getId(), null);
-		writer.writeAttribute("name", comp.getId(), null);
-		writer.writeAttribute("type", "button", null);
-		/*writer.writeAttribute("class", component.resolveStyleClass(), null);*/
+writer.writeAttribute("id", comp.getId(), null);
+writer.writeAttribute("name", comp.getId(), null);
+writer.writeAttribute("type", "button", null);
 
-		if (component.isDisabled()) {
-			writer.writeAttribute("disabled", "disabled", null);
-		}
+if (component.isDisabled()) {
+    writer.writeAttribute("disabled", "disabled", null);
+}
 
-		String onclick = buildOnclick(context, component);
-		if (StringUtils.isNotBlank(onclick)) {
-			writer.writeAttribute("onclick", onclick, null);
-		}
-		String onclick = buildOnclick(context, component);
+String onclick = buildOnclick(context, component);
 
-		if (onclick != null && !onclick.isEmpty()) {
-    	writer.writeAttribute("onclick", onclick, null);
-		}
+if (onclick != null && !onclick.isEmpty()) {
+    writer.writeAttribute("onclick", onclick, null);
+}
 
-		// Text
-		writer.startElement("span", null);
-		writer.writeAttribute("class", HtmlConstants.BUTTON_TEXT, null);
+// Text
+writer.startElement("span", null);
+writer.writeAttribute("class", HtmlConstants.BUTTON_TEXT, null);
 
-		Object value = component.getValue();
-		if (value != null) {
-			writer.writeText(value.toString(), null);
-		}
+Object value = component.getValue();
+if (value != null) {
+    writer.writeText(value.toString(), null);
+}
 
-		writer.endElement("span");
-		writer.endElement("button");
-	}
+writer.endElement("span");
+writer.endElement("button");
+} 
 
 private String buildOnclick(FacesContext context, Button component) {
 
@@ -78,4 +73,6 @@ private String buildOnclick(FacesContext context, Button component) {
     }
 
     return sb.toString();
+}
+
 }
