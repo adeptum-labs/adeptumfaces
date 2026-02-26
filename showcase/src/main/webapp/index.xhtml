@@ -6,27 +6,36 @@
 		<title>HELLO WORLD</title>
 	</h:head>
 	<h:body>
-		<h:outputText value="JSF fungerar!" />
-		<h:form>
-			
-			<h:button dir="RTL" value="Hej2 hej2" />
-			<h:form>
-   			 <a:button value="Gå till sida 2"
-              outcome="page2.xhtml" />
-		</h:form>
-		</h:form>
-                <h:panelGroup id="counterPanel" layout="block" style="font-size:24px; margin-bottom:20px;">
-                        Counter value: #{counterBean.count}
-                </h:panelGroup>
-                <h:form>
-                        <a:commandbutton value="Increment" icon="pi pi-plus" ajax="true" action="#{counterBean.increment}">
-                                <f:ajax render="counterPanel"/>
-                        </a:commandbutton>
-                </h:form>
-                <h:form>
-                        <a:commandbutton value="Reset" icon="pi pi-refresh" ajax="true" confirmationScript="if(!confirm('Reset counter?')) return false;" action="#{counterBean.reset}">
-                                <f:ajax render="counterPanel"/>
-                        </a:commandbutton>
-                </h:form>
-	</h:body>
+
+    <h:outputText value="JSF fungerar!" />
+
+    <h:form>
+        <h:button dir="RTL" value="Hej2 hej2" />
+        <a:button value="Gå till sida 2"
+                  outcome="/page2.xhtml" />
+    </h:form>
+
+    <h:panelGroup id="counterPanel" layout="block"
+                  style="font-size:24px; margin-bottom:20px;">
+        Counter value: #{counterBean.count}
+    </h:panelGroup>
+
+    <h:form>
+        <a:commandbutton value="Increment"
+                         ajax="true"
+                         action="#{counterBean.increment}">
+            <f:ajax render="counterPanel"/>
+        </a:commandbutton>
+    </h:form>
+
+    <h:form>
+        <a:commandbutton value="Reset"
+                         ajax="true"
+                         confirmationScript="if(!confirm('Reset counter?')) return false;"
+                         action="#{counterBean.reset}">
+            <f:ajax render="counterPanel"/>
+        </a:commandbutton>
+    </h:form>
+
+</h:body>
 </html>
