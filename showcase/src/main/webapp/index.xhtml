@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a="http://adeptumfaces.org/ui">
+      xmlns:a="http://adeptumfaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 	<h:head>
 		<title>HELLO WORLD</title>
@@ -19,10 +19,14 @@
                         Counter value: #{counterBean.count}
                 </h:panelGroup>
                 <h:form>
-                        <a:commandbutton value="Increment" icon="pi pi-plus" ajax="true" action="#{counterBean.increment}"/>
+                        <a:commandbutton value="Increment" icon="pi pi-plus" ajax="true" action="#{counterBean.increment}">
+                                <f:ajax render="counterPanel"/>
+                        </a:commandbutton>
                 </h:form>
                 <h:form>
-                        <a:commandbutton value="Reset" icon="pi pi-refresh" ajax="true" confirmationScript="if(!confirm('Reset counter?')) return false;" action="#{counterBean.reset}"/>
+                        <a:commandbutton value="Reset" icon="pi pi-refresh" ajax="true" confirmationScript="if(!confirm('Reset counter?')) return false;" action="#{counterBean.reset}">
+                                <f:ajax render="counterPanel"/>
+                        </a:commandbutton>
                 </h:form>
 	</h:body>
 </html>
