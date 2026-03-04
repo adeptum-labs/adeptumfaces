@@ -42,6 +42,7 @@ public class CommandButtonRenderer extends Renderer {
 
                 String clientId = button.getClientId(context);
                 /*String type = resolveButtonType(button);*/
+                String type = button.isAjax() ? "button" : resolveButtonType(button);
                 /*String styleClass = button.resolveStyleClass();*/
                 String icon = button.getIcon();
                 Object value = button.getValue();
@@ -50,7 +51,7 @@ public class CommandButtonRenderer extends Renderer {
 
                 writer.writeAttribute("id", clientId, null);
                 writer.writeAttribute("name", clientId, null);
-                /*writer.writeAttribute("type", type, null);*/
+                writer.writeAttribute("type", type, null);
 
                 /*if (styleClass != null) {
                         writer.writeAttribute("class", styleClass, null);
@@ -87,6 +88,8 @@ public class CommandButtonRenderer extends Renderer {
                 // ----- Text -----
                 writer.startElement("span", null);
                 writer.writeAttribute("class", "button-text", null);
+                
+                writer.writeAttribute( "onclick", buildOnclick(context, button), null);
 
                 if (value != null) {
                         if (button.isEscape()) {
@@ -121,13 +124,14 @@ public class CommandButtonRenderer extends Renderer {
                 String clientId = button.getClientId(context);
 
                 String script;
+                script = buildAjaxRequest(clientId);
 
-                if (ajax) {
+               /* if (ajax) {
                         script = buildAjaxRequest(clientId);
                 }
                 else {
                         script = null;
-                }
+                }*/
 
                 if (button.requiresConfirmation()) {
                         String confirmScript = button.getConfirmationScript();
@@ -138,8 +142,10 @@ public class CommandButtonRenderer extends Renderer {
         }
 
         private String buildAjaxRequest(String clientId) {
-                return "jsf.ajax.request('" + clientId + "', event); return false;";
+               return "jsf.ajax.request(this, event, {execute:'@this', render:'@form'}); return false;";
         }
+        
+        /*return "jsf.ajax.request(this, event, {execute:'@this', render:'" + clientId + "'}); return false;";*/
 
         /*private UIForm findClosestForm(UIComponent component) {
                 UIComponent parent = component;

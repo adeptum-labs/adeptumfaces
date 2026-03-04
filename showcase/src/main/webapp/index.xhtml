@@ -21,21 +21,25 @@
     </h:panelGroup>
 
     <h:form>
+            
         <a:commandbutton value="Increment"
                          ajax="true"
                          action="#{counterBean.increment}">
-            <f:ajax render="counterPanel"/>
         </a:commandbutton>
     </h:form>
 
     <h:form>
         <a:commandbutton value="Reset"
                          ajax="true"
-                         confirmationScript="if(!confirm('Reset counter?')) return false;"
                          action="#{counterBean.reset}">
-            <f:ajax render="counterPanel"/>
         </a:commandbutton>
+            
+        <h:commandButton value="hejeh">
+                <f:ajax></f:ajax>
+        </h:commandButton>
     </h:form>
+    
+    
 
 </h:body>
 </html>
