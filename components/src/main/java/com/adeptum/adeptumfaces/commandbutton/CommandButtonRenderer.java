@@ -52,6 +52,7 @@ public class CommandButtonRenderer extends Renderer {
                 writer.writeAttribute("id", clientId, null);
                 writer.writeAttribute("name", clientId, null);
                 writer.writeAttribute("type", type, null);
+                writer.writeAttribute( "onclick", buildOnclick(context, button), null);
 
                 /*if (styleClass != null) {
                         writer.writeAttribute("class", styleClass, null);
@@ -88,8 +89,6 @@ public class CommandButtonRenderer extends Renderer {
                 // ----- Text -----
                 writer.startElement("span", null);
                 writer.writeAttribute("class", "button-text", null);
-                
-                writer.writeAttribute( "onclick", buildOnclick(context, button), null);
 
                 if (value != null) {
                         if (button.isEscape()) {
@@ -124,7 +123,7 @@ public class CommandButtonRenderer extends Renderer {
                 String clientId = button.getClientId(context);
 
                 String script;
-                script = buildAjaxRequest(clientId);
+                script = buildAjaxRequest(context, button);
 
                /* if (ajax) {
                         script = buildAjaxRequest(clientId);
@@ -141,8 +140,15 @@ public class CommandButtonRenderer extends Renderer {
                 return script;
         }
 
-        private String buildAjaxRequest(String clientId) {
-               return "jsf.ajax.request(this, event, {execute:'@this', render:'@form'}); return false;";
+        private String buildAjaxRequest(FacesContext context, CommandButton button) {
+                
+                String clientId = button.getClientId(context);
+                String render = clientId.getRender();
+                
+                if (render == null || render.isEmpty()){
+                        render = "@form";
+                }
+                return "jsf.ajax.request(this, event, {execute:'@this', render:'" + render + "'}); return false;";
         }
         
         /*return "jsf.ajax.request(this, event, {execute:'@this', render:'" + clientId + "'}); return false;";*/

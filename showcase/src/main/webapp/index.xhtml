@@ -14,17 +14,22 @@
         <a:button value="Gå till sida 2"
                   outcome="/page2.xhtml" />
     </h:form>
-
+    
     <h:panelGroup id="counterPanel" layout="block"
-                  style="font-size:24px; margin-bottom:20px;">
-        Counter value: #{counterBean.count}
-    </h:panelGroup>
+                          style="font-size:24px; margin-bottom:20px;">
+                        Counter value: #{counterBean.count}
+            </h:panelGroup>
 
     <h:form>
+            <h:panelGroup id="counterPanel" layout="block"
+                          style="font-size:24px; margin-bottom:20px;">
+                        Counter value: #{counterBean.count}
+            </h:panelGroup>
             
         <a:commandbutton value="Increment"
                          ajax="true"
-                         action="#{counterBean.increment}">
+                         action="#{counterBean.increment}"
+                         render=":counterPanel">
         </a:commandbutton>
     </h:form>
 

@@ -74,7 +74,8 @@ public class CommandButton extends HtmlCommandButton {
         ariaLabel,
         disableOnAjax,
         confirmationScript,
-        type
+        type,
+        render
     }
 
     public CommandButton() {
@@ -182,4 +183,11 @@ public class CommandButton extends HtmlCommandButton {
     public void setType(String type) {
         getStateHelper().put(PropertyKeys.type, type);
     }
+    
+    public String getRender() {
+                return (String) getStateHelper().eval(PropertyKeys.render, null);
+        }
+    public void setRender(String render) {
+                getStateHelper().put(PropertyKeys.render, render);
+        }
 }
