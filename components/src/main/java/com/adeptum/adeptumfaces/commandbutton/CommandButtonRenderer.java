@@ -3,7 +3,6 @@ package com.adeptum.adeptumfaces.commandbutton;
 import java.io.IOException;
 
 import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.UIForm;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.ResponseWriter;
 import jakarta.faces.event.ActionEvent;
@@ -16,150 +15,82 @@ import jakarta.faces.render.Renderer;
 )
 public class CommandButtonRenderer extends Renderer {
 
-        @Override
-        public void decode(FacesContext context, UIComponent component) {
-                CommandButton button = (CommandButton) component;
+    @Override
+    public void decode(FacesContext context, UIComponent component) {
+        CommandButton button = (CommandButton) component;
 
-                if (button.isDisabled()) {
-                        return;
-                }
-
-                String clientId = button.getClientId(context);
-
-                if (context.getExternalContext()
-                        .getRequestParameterMap()
-                        .containsKey(clientId)) {
-
-                button.queueEvent(new ActionEvent(button));
-                }
+        if (button.isDisabled()) {
+            return;
         }
 
-        @Override
-        public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        String clientId = button.getClientId(context);
 
-                CommandButton button = (CommandButton) component;
-                ResponseWriter writer = context.getResponseWriter();
+        if (context.getExternalContext()
+                .getRequestParameterMap()
+                .containsKey(clientId)) {
 
-                String clientId = button.getClientId(context);
-                /*String type = resolveButtonType(button);*/
-                String type = button.isAjax() ? "button" : resolveButtonType(button);
-                /*String styleClass = button.resolveStyleClass();*/
-                String icon = button.getIcon();
-                Object value = button.getValue();
+            button.queueEvent(new ActionEvent(button));
+        }
+    }
 
-                writer.startElement("button", button);
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        CommandButton button = (CommandButton) component;
+        ResponseWriter writer = context.getResponseWriter();
 
-                writer.writeAttribute("id", clientId, null);
-                writer.writeAttribute("name", clientId, null);
-                writer.writeAttribute("type", type, null);
-                writer.writeAttribute( "onclick", buildOnclick(context, button), null);
+        String clientId = button.getClientId(context);
+        String type = resolveButtonType(button);
+        Object value = button.getValue();
 
-                /*if (styleClass != null) {
-                        writer.writeAttribute("class", styleClass, null);
-                }
+        writer.startElement("button", button);
+        writer.writeAttribute("id", clientId, null);
+        writer.writeAttribute("name", clientId, null);
+        writer.writeAttribute("type", type, null);
+        writer.writeAttribute("onclick", buildOnclick(context, button), null);
 
-                if (button.getAriaLabel() != null) {
-                        writer.writeAttribute("aria-label", button.getAriaLabel(), null);
-                }
+        // ----- Text -----
+        writer.startElement("span", null);
+        writer.writeAttribute("class", "button-text", null);
 
-                if (button.isDisabled()) {
-                        writer.writeAttribute("disabled", "disabled", null);
-                }
-
-                String onclick = buildOnclick(context, button);
-
-                if (onclick != null) {
-                        writer.writeAttribute("onclick", onclick, null);
-                }
-
-                // ----- Icon -----
-                if (icon != null && !icon.trim().isEmpty()) {
-                        writer.startElement("span", null);
-
-                        String iconClass = "button-icon " +
-                        ("right".equals(button.getIconPos())
-                                    ? "button-icon-right "
-                                    : "button-icon-left ")
-                                + icon;
-
-                        writer.writeAttribute("class", iconClass.trim(), null);
-                        writer.endElement("span");
-                }*/
-
-                // ----- Text -----
-                writer.startElement("span", null);
-                writer.writeAttribute("class", "button-text", null);
-
-                if (value != null) {
-                        if (button.isEscape()) {
-                                writer.writeText(value.toString(), null);
-                        }
-                        else {
-                                writer.write(value.toString());
-                        }
-                }
-
-                writer.endElement("span");
-                writer.endElement("button");
+        if (value != null) {
+            if (button.isEscape()) {
+                writer.writeText(value.toString(), null);
+            } else {
+                writer.write(value.toString());
+            }
         }
 
-        private String resolveButtonType(CommandButton button) {
-                String type = button.getType();
+        writer.endElement("span");
+        writer.endElement("button");
+    }
 
-                if (type == null) {
-                        return "submit";
-                }
+    private String resolveButtonType(CommandButton button) {
+        String type = button.getType();
+        return (type != null) ? type : "submit";
+    }
 
-                return type;
+    // ===== Korrekt buildOnclick =====
+    private String buildOnclick(FacesContext context, CommandButton button) {
+        if (button.isDisabled()) {
+            return null;
         }
 
-        private String buildOnclick(FacesContext context, CommandButton button) {
+        String clientId = button.getClientId(context);
+        String script = null;
 
-                if (button.isDisabled()) {
-                        return null;
-                }
-
-                boolean ajax = button.isAjax();
-                String clientId = button.getClientId(context);
-
-                String script;
-                script = buildAjaxRequest(context, button);
-
-               /* if (ajax) {
-                        script = buildAjaxRequest(clientId);
-                }
-                else {
-                        script = null;
-                }*/
-
-                if (button.requiresConfirmation()) {
-                        String confirmScript = button.getConfirmationScript();
-                        return confirmScript + (script != null ? script : "");
-                }
-
-                return script;
+        if (button.isAjax()) {
+            script = buildAjaxRequest(clientId);
         }
 
-        private String buildAjaxRequest(FacesContext context, CommandButton button) {
-                
-                String clientId = button.getClientId(context);
-                String render = clientId.getRender();
-                
-                if (render == null || render.isEmpty()){
-                        render = "@form";
-                }
-                return "jsf.ajax.request(this, event, {execute:'@this', render:'" + render + "'}); return false;";
+        if (button.requiresConfirmation()) {
+            String confirmScript = button.getConfirmationScript();
+            return confirmScript + (script != null ? script : "");
         }
-        
-        /*return "jsf.ajax.request(this, event, {execute:'@this', render:'" + clientId + "'}); return false;";*/
 
-        /*private UIForm findClosestForm(UIComponent component) {
-                UIComponent parent = component;
+        return script;
+    }
 
-                while (parent != null && !(parent instanceof UIForm)) {
-                        parent = parent.getParent();
-                }
-
-                return (UIForm) parent;
-        }*/
+    private String buildAjaxRequest(String clientId) {
+        return "jsf.ajax.request('" + clientId + "', event); return false;";
+    }
 }
