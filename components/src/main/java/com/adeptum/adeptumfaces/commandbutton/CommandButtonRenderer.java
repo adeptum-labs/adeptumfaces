@@ -91,7 +91,6 @@ public class CommandButtonRenderer extends Renderer {
     }
 
     private String buildAjaxRequest(String clientId) {
-        return "faces.ajax.request(this,event,{execute:'@this',render:'" + clientId + "'});return false;";
-        
+        return "faces.ajax.request(this,event,{execute:'@this',render:'" + clientId + "'});return false;";    
     }
 }

@@ -273,12 +273,12 @@
 		</attribute>
         </tag>
         
-        <tag>
+        <!--<tag>
                 <tag-name>datatable</tag-name>
                 <component>
                         <component-type>com.adeptum.adeptumfaces.commandbutton.TableBean</component-type>
                         <renderer-type>com.adeptum.adeptumfaces.commandbutton.TableRepository</renderer-type>
 			<handler-class>com.adeptum.adeptumfaces.handler.TailwindTagHandler</handler-class>
                 </component>
-        </tag>
+        </tag>-->
 </facelet-taglib>

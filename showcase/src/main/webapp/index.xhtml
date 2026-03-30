@@ -15,10 +15,6 @@
                   outcome="/page2.xhtml" />
     </h:form>
     
-    <h:panelGroup id="counterPanel" layout="block"
-                          style="font-size:24px; margin-bottom:20px;">
-                        Counter value: #{counterBean.count}
-    </h:panelGroup>
 
     <h:form>
             <h:panelGroup id="counterPanel" layout="block"
@@ -39,10 +35,6 @@
                          ajax="true"
                          action="#{counterBean.reset}">
         </a:commandbutton>
-            
-        <h:commandButton value="hejeh">
-                <f:ajax></f:ajax>
-        </h:commandButton>
     </h:form>
 
 </h:body>

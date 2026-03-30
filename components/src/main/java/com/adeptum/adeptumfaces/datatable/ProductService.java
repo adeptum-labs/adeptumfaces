@@ -1,10 +1,13 @@
 package com.adeptum.adeptumfaces.datatable;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+@ApplicationScoped
 public class ProductService {
         
         private List<Product> products;
