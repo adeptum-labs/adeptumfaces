@@ -30,6 +30,7 @@
                          ajax="true"
                          action="#{counterBean.increment}"
                          render=":counterPanel">
+                         <f:ajax execute="@this" render="counterPanel"></f:ajax>
         </a:commandbutton>
     </h:form>
 
