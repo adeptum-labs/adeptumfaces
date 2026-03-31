@@ -2,7 +2,6 @@
 package com.adeptum.adeptumfaces.button;
 
 import com.adeptum.adeptumfaces.util.HtmlConstants;
-import com.adeptum.adeptumfaces.util.StringUtils;
 import jakarta.faces.component.UIComponent;
 
 import jakarta.faces.context.FacesContext;
