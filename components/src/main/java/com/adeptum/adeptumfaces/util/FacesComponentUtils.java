@@ -16,9 +16,14 @@ public final class FacesComponentUtils {
     }
 
     public static Map<String, List<String>> getRequestParams() {
-	return FacesContext.getCurrentInstance().getExternalContext()
-                .getRequestParameterValuesMap().entrySet().stream().collect(
-		Collectors.toMap(Map.Entry::getKey, v -> Arrays.asList(v.getValue())
+	    return FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getRequestParameterValuesMap()
+                        .entrySet()
+                        .stream()
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                v -> Arrays.asList(v.getValue())
 	));
     }
 
