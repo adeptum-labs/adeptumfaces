@@ -1,4 +1,3 @@
-
 package com.adeptum.adeptumfaces.datatable;
 
 import java.io.Serializable;

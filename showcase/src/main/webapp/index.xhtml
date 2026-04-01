@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a="http://adeptumfaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:a="http://adeptumfaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 
 	<h:head>
 		<title>HELLO WORLD</title>
@@ -36,6 +37,38 @@
                          action="#{counterBean.reset}">
         </a:commandbutton>
     </h:form>
+    
+        <div class="card">
+                <a:datatable value="#{dtBasicView.products}" var="product">
+                        <f:facet name="header">
+                            List of Products
+                        </f:facet>
+                    
+                        <h:column>
+                                <f:facet name="header">Code</f:facet>
+                                <h:outputText value="#{product.code}" />
+                        </h:column>
+
+                        <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:outputText value="#{product.name}" />
+                        </h:column>
+
+                        <h:column>
+                                <f:facet name="header">Category</f:facet>
+                                <h:outputText value="#{product.category}" />
+                        </h:column>
+
+                        <h:column>
+                                <f:facet name="header">Quantity</f:facet>
+                                <h:outputText value="#{product.quantity}" />
+                        </h:column>
+                        
+                        <f:facet name="footer">
+                                <h:outputText value="In total there are #{fn:length(dtBasicView.products)} products." />
+                        </f:facet>
+                </a:datatable>
+        </div>
 
 </h:body>
 </html>
