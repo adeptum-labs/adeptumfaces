@@ -18,4 +18,9 @@ public class Button extends HtmlOutcomeTargetButton {
 	public Map<String, List<String>> getParams() {
 		return FacesComponentUtils.getRequestParams();
 	}
+
+	public boolean hasOutcome() {
+		String outcome = getOutcome();
+		return outcome != null && !outcome.isBlank();
+	}
 }
