@@ -1,6 +1,8 @@
 
 package com.adeptum.adeptumfaces.datatable;
 
+import java.util.List;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 
@@ -31,4 +33,8 @@ public class LazyTableBean {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}*/
+
+	public boolean hasData(List <?> data) {
+		return data != null && !data.isEmpty();
+	}
 }
