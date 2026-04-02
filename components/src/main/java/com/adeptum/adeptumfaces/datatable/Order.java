@@ -21,6 +21,11 @@ public class Order implements Serializable{
                 return imagePath;
         }
 
+        public boolean isValid () {
+                return number > 0; 
+                
+        }
+
         @Override
         public boolean equals(Object o) {
                 if (this == o) return true;
