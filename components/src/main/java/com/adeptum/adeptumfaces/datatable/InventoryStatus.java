@@ -15,4 +15,8 @@ public enum InventoryStatus {
         public String getText() {
                 return text;
         }
+
+        public boolean isLow() {
+                return this == LOWSTOCK;
+        }
 }
