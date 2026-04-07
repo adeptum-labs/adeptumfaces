@@ -87,5 +87,14 @@ public class Product implements Serializable{
                 Product other = (Product) obj;
                 return Objects.equals(code, other.code);
         }
+
+        /**
+        * Hämta om priset har kr på slutet
+        * price = 99.99 → getFormattedPrice() returnerar "99.99 kr"
+        * price = 200.0 → getFormattedPrice() returnerar "200.0 kr"
+        */
+        public String getFormattedPrice() {
+        return price + " kr";
+        }
         
-}
+        }
