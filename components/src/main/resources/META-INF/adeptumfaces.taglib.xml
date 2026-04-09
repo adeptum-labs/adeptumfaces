@@ -278,6 +278,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
                 <attribute>
+		  <description><![CDATA[Space-separated client IDs or search expressions to rerender after the AJAX request.]]></description>
+		  <name>render</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+                <attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
 		  <name>rendered</name>
 		  <required>false</required>
