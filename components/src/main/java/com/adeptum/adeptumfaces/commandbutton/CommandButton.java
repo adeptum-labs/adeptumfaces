@@ -172,6 +172,17 @@ public class CommandButton extends HtmlCommandButton {
         getStateHelper().put(PropertyKeys.confirmationScript, script);
     }
 
+    public String getFullLabel() {
+    String label = getValue() != null ? getValue().toString() : "";
+    String aria = getAriaLabel();
+
+    if (aria != null && !aria.isBlank()) {
+        return label + " - " + aria;
+    }
+
+    return label;
+    }
+    
     public boolean requiresConfirmation() {
         return getConfirmationScript() != null;
     }
