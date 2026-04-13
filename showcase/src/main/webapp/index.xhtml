@@ -10,7 +10,6 @@
 		<h:outputText value="JSF fungerar!" />
 
 		<h:form>
-			<h:button dir="RTL" value="Hej2 hej2" />
 			<a:button value="Gå till sida 2"
 				  outcome="/page2.xhtml" />
 		</h:form>
@@ -37,8 +36,8 @@
 			</a:commandbutton>
 		</h:form>
 
-		<div class="card">
-			<a:datatable value="#{dtBasicView.products}" var="product">
+                <div class="card">
+			<a:datatable value="#{basicView.products}" var="product" rows="5">
 				<f:facet name="header">
 					List of Products
 				</f:facet>
@@ -64,7 +63,7 @@
 				</h:column>
 
 				<f:facet name="footer">
-					<h:outputText value="In total there are #{fn:length(dtBasicView.products)} products." />
+					<h:outputText value="In total there are #{fn:length(basicView.products)} products." />
 				</f:facet>
 			</a:datatable>
 		</div>

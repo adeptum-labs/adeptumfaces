@@ -35,4 +35,20 @@ public class DataTable extends UIComponentBase {
         public void setVar(String var) {
                 getStateHelper().put("var", var);
         }
+        
+        public int getRows(){
+                return (int) getStateHelper().eval("rows", 5);
+        }
+        
+        public void setRows(int rows){
+                getStateHelper().put("rows", rows);
+        }
+        
+        public int getPage() {
+                return (int) getStateHelper().eval("page", 0);
+        }
+
+        public void setPage(int page) {
+                getStateHelper().put("page", page);
+        }
 }

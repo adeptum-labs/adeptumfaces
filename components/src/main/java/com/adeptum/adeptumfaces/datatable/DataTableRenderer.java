@@ -34,6 +34,19 @@ public class DataTableRenderer extends Renderer {
 
                 List<?> data = (List<?>) table.getValue();
                 String var = table.getVar();
+                
+                int rows = table.getRows();
+                int page = Math.max(0, table.getPage());
+
+                int totalPages = (int) Math.ceil((double) data.size() / rows);
+
+                if (page >= totalPages) {
+                        page = 0;
+                        table.setPage(0);
+                }
+
+                int start = page * rows;
+                int end = Math.min(start + rows, data.size());
 
                 if (data == null || var == null) {
                         return;
@@ -44,7 +57,8 @@ public class DataTableRenderer extends Renderer {
 
                 writer.startElement("tbody", null);
 
-                for (Object row : data) {
+                for (int i = start; i < end; i++) /*for (Object row : data)*/ {
+                        Object row = data.get(i);
                         Object oldVar = requestMap.put(var, row);
 
                         writer.startElement("tr", null);
@@ -75,8 +89,26 @@ public class DataTableRenderer extends Renderer {
 
                 writer.endElement("tbody");
         }
-
+        
         @Override
+        public void decode(FacesContext context, UIComponent component) {
+                DataTable table = (DataTable) component;
+
+                String pageParam = context.getExternalContext()
+                        .getRequestParameterMap()
+                        .get("page");
+
+                if (pageParam != null) {
+                        try {
+                                table.setPage(Integer.parseInt(pageParam));
+                        }
+                        catch (NumberFormatException e) {
+                                table.setPage(0);
+                        }
+                }
+}
+
+        /*@Override
         public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
                 renderFooter(context, component);
 
@@ -86,6 +118,46 @@ public class DataTableRenderer extends Renderer {
         @Override
         public boolean getRendersChildren() {
                 return true;
+        }*/
+        @Override
+        public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+                DataTable table = (DataTable) component;
+                List<?> data = (List<?>) table.getValue();
+
+                renderFooter(context, component);
+
+                ResponseWriter writer = context.getResponseWriter();
+
+                writer.endElement("table");
+
+                if (data == null || data.isEmpty()) {
+                        return;
+                }
+
+                int rows = table.getRows();
+                int currentPage = table.getPage();
+                int totalPages = (int) Math.ceil((double) data.size() / rows);
+
+                writer.startElement("div", null);
+                writer.writeAttribute("style", "margin-top:10px;", null);
+
+                if (currentPage > 0) {
+                        writer.startElement("a", null);
+                        writer.writeAttribute("href", "?page=" + (currentPage - 1), null);
+                        writer.writeText("Previous ", null);
+                        writer.endElement("a");
+                }
+
+                writer.writeText(" Page " + (currentPage + 1) + " of " + totalPages + " ", null);
+
+                if (currentPage < totalPages - 1) {
+                        writer.startElement("a", null);
+                        writer.writeAttribute("href", "?page=" + (currentPage + 1), null);
+                        writer.writeText("Next", null);
+                        writer.endElement("a");
+                }
+
+                writer.endElement("div");
         }
 
         private void renderHeader(FacesContext context, UIComponent component) throws IOException {
