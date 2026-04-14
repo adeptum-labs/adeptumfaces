@@ -22,6 +22,10 @@ public class BasicView implements Serializable {
         public void init() {
                 products = service.getProducts(10);
         }
+        
+        public void refreshProducts() {
+        products = service.getProducts(10);
+        }
 
         public List<Product> getProducts() {
                 return products;
