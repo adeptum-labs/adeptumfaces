@@ -25,6 +25,12 @@ public class LazyTableBean {
 	public void setFirst(int first) {
 		this.first = first;
 	}
+		public int getDataCount(List<?> data) {
+    if (data == null) {
+        return 0;
+    }
+    return data.size();
+}
 
 	public int getPageSize() {
 		return pageSize;
@@ -37,4 +43,12 @@ public class LazyTableBean {
 	public boolean hasData(List <?> data) {
 		return data != null && !data.isEmpty();
 	}
+
+	public int getDataCount(List<?> data) {
+    if (data == null) {
+        return 0; // list finns ej och reurnera 0
+    }
+    return data.size(); // returnera antal rader på list
+	}
+
 }
