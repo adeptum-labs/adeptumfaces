@@ -51,6 +51,11 @@ public class DataTableRenderer extends Renderer {
                 if (data == null || var == null) {
                         return;
                 }
+                
+                if (start >= data.size()) {
+                        table.setPage(0);
+                        start = 0;
+                }
 
                 ResponseWriter writer = context.getResponseWriter();
                 Map<String, Object> requestMap = context.getExternalContext().getRequestMap();
@@ -64,8 +69,12 @@ public class DataTableRenderer extends Renderer {
                         writer.startElement("tr", null);
 
                         for (UIComponent child : component.getChildren()) {
-                                if (child instanceof UIColumn) {
-                                        UIColumn column = (UIColumn) child;
+
+                                if (!(child instanceof UIColumn)) {
+                                        continue;
+                                }
+
+                                UIColumn column = (UIColumn) child;
 
                                         writer.startElement("td", null);
 
@@ -75,7 +84,6 @@ public class DataTableRenderer extends Renderer {
 
                                         writer.endElement("td");
                                 }
-                        }
 
                         writer.endElement("tr");
 
@@ -93,44 +101,29 @@ public class DataTableRenderer extends Renderer {
         @Override
         public void decode(FacesContext context, UIComponent component) {
                 DataTable table = (DataTable) component;
+                
+                String clientId = component.getClientId(context);
 
-                String pageParam = context.getExternalContext()
+                String newPage = context.getExternalContext()
                         .getRequestParameterMap()
-                        .get("page");
+                        .get(component.getClientId(context) + "_page");
 
-                if (pageParam != null) {
+                if (newPage != null) {
                         try {
-                                table.setPage(Integer.parseInt(pageParam));
-                        }
-                        catch (NumberFormatException e) {
+                                table.setPage(Integer.parseInt(newPage));
+                        } catch (Exception e) {
                                 table.setPage(0);
-                        }
+                          }
                 }
-}
-
-        /*@Override
-        public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-                renderFooter(context, component);
-
-                context.getResponseWriter().endElement("table");
         }
 
-        @Override
-        public boolean getRendersChildren() {
-                return true;
-        }*/
         @Override
         public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
                 DataTable table = (DataTable) component;
                 List<?> data = (List<?>) table.getValue();
-
-                renderFooter(context, component);
-
-                ResponseWriter writer = context.getResponseWriter();
-
-                writer.endElement("table");
-
+                
                 if (data == null || data.isEmpty()) {
+                        context.getResponseWriter().endElement("table");
                         return;
                 }
 
@@ -138,23 +131,37 @@ public class DataTableRenderer extends Renderer {
                 int currentPage = table.getPage();
                 int totalPages = (int) Math.ceil((double) data.size() / rows);
 
+                renderFooter(context, component);
+
+                ResponseWriter writer = context.getResponseWriter();
+
+                String clientId = component.getClientId(context);
+
                 writer.startElement("div", null);
                 writer.writeAttribute("style", "margin-top:10px;", null);
 
                 if (currentPage > 0) {
-                        writer.startElement("a", null);
-                        writer.writeAttribute("href", "?page=" + (currentPage - 1), null);
+                        writer.startElement("button", null);
+                        writer.writeAttribute("type", "button", null);
+
+                        writer.writeAttribute("onclick", "jsf.ajax.request(this, event, {" + "execute:'@this'," + "render:'@form'," + "params:{'" + clientId + "_page':" + (currentPage - 1) + "}" + "});",
+                        null);
+
                         writer.writeText("Previous ", null);
-                        writer.endElement("a");
+                        writer.endElement("button");
                 }
 
                 writer.writeText(" Page " + (currentPage + 1) + " of " + totalPages + " ", null);
 
                 if (currentPage < totalPages - 1) {
-                        writer.startElement("a", null);
-                        writer.writeAttribute("href", "?page=" + (currentPage + 1), null);
+                        writer.startElement("button", null);
+                        writer.writeAttribute("type", "button", null);
+
+                        writer.writeAttribute("onclick", "jsf.ajax.request(this, event, {" + "execute:'@this'," + "render:'@form'," + "params:{'" + clientId + "_page':" + (currentPage + 1) + "}" + "});",
+                        null);
+
                         writer.writeText("Next", null);
-                        writer.endElement("a");
+                        writer.endElement("button");
                 }
 
                 writer.endElement("div");

@@ -51,4 +51,16 @@ public class DataTable extends UIComponentBase {
         public void setPage(int page) {
                 getStateHelper().put("page", page);
         }
+        
+        public void nextPage(){
+                int page = getPage();
+                setPage (page + 1);
+        }
+        
+        public void previousPage(){
+                int page = getPage();
+                if (page > 0){
+                        setPage(page - 1);
+                }
+        }
 }
