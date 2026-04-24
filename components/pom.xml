@@ -57,6 +57,18 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+                        <plugin>
+                                <groupId>com.adeptum.adeptumfaces</groupId>
+                                <artifactId>jsf-maven-plugin</artifactId>
+                                <version>0.0.1-SNAPSHOT</version>
+                                <executions>
+                                        <execution>
+                                                <goals>
+                                                        <goal>generate</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                        </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
