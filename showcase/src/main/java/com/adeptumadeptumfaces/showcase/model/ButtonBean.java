@@ -2,19 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.adeptum.adeptumfaces;
+package com.adeptumadeptumfaces.showcase.model;
+
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import java.util.List;
 
 @Named
 @RequestScoped
-public class ListBean {
+public class ButtonBean {
     
-    private ListService listservice = new ListService();
+    private ButtonModel buttonModel =
+            new ButtonModel("Click me", false);
     
-    public List<ListModel> getLists() {
-        return listservice.findALL();
+    public ButtonModel getButtonModel(){
+        return buttonModel;
     }
     
+    public void onClick(){
+        System.out.println("Button clicked");
+    }
 }
