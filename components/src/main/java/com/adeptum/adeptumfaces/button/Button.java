@@ -7,7 +7,7 @@ import jakarta.faces.component.html.HtmlOutcomeTargetButton;
 import java.util.List;
 import java.util.Map;
 
-@FacesComponent(value = Button.COMPONENT_TYPE)
+@FacesComponent(Button.COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
 	public static final String COMPONENT_TYPE = "com.adeptum.adeptumfaces.button.Button";
 
@@ -15,12 +15,13 @@ public class Button extends HtmlOutcomeTargetButton {
 		setRendererType(ButtonRenderer.RENDERER_TYPE);
 	}
 
+    // Hämtar parametrar från URL
 	public Map<String, List<String>> getParams() {
 		return FacesComponentUtils.getRequestParams();
 	}
 
+    // Kontrollerar om outcome finns
 	public boolean hasOutcome() {
-		String outcome = getOutcome();
-		return outcome != null && !outcome.isBlank();
+		return getOutcome() != null && !getOutcome().isBlank();
 	}
 }
