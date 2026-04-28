@@ -70,11 +70,8 @@ public class DataTableRenderer extends Renderer {
 
                         for (UIComponent child : component.getChildren()) {
 
-                                if (!(child instanceof UIColumn)) {
-                                        continue;
-                                }
-
-                                UIColumn column = (UIColumn) child;
+                                if (child instanceof UIColumn) {
+                                        UIColumn column = (UIColumn) child;
 
                                         writer.startElement("td", null);
 
@@ -84,6 +81,7 @@ public class DataTableRenderer extends Renderer {
 
                                         writer.endElement("td");
                                 }
+                        }
 
                         writer.endElement("tr");
 
