@@ -1,4 +1,4 @@
-package com.adeptum.adeptumfaces.datatable;
+package com.adeptumadeptumfaces.showcase.model;
 
 import jakarta.enterprise.context.ApplicationScoped;
 

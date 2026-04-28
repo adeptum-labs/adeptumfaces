@@ -1,5 +1,7 @@
-package com.adeptum.adeptumfaces.datatable;
+package com.adeptumadeptumfaces.showcase.model;
 
+import com.adeptumadeptumfaces.showcase.model.Product;
+import com.adeptumadeptumfaces.showcase.model.ProductService;
 import java.io.Serializable;
 import java.util.List;
 
