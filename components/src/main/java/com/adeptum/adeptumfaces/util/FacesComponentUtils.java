@@ -12,23 +12,34 @@ import java.util.stream.Collectors;
 
 public final class FacesComponentUtils {
 
-    private FacesComponentUtils() {
-    }
+    private FacesComponentUtils() {}
 
     public static Map<String, List<String>> getRequestParams() {
-	    return FacesContext.getCurrentInstance()
-                        .getExternalContext()
-                        .getRequestParameterValuesMap()
-                        .entrySet()
-                        .stream()
-                        .collect(Collectors.toMap(
-                                Map.Entry::getKey,
-                                v -> Arrays.asList(v.getValue())
-	));
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (context == null) {
+            return Map.of();
+        }
+
+        return context
+                .getExternalContext()
+                .getRequestParameterValuesMap()
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> Arrays.asList(entry.getValue())
+                ));
     }
 
     public static Map<String, String> getRequestParamMap() {
-        return FacesContext.getCurrentInstance()
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (context == null) {
+            return Map.of();
+        }
+
+        return context
                 .getExternalContext()
                 .getRequestParameterMap();
     }
