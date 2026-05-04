@@ -38,6 +38,10 @@ public class Page<T> {
         }
 
         public int getTotalPages() {
-                return (int) Math.ceil((double) totalElements / pageSize);
+         if (pageSize == 0) {
+        return 0;
+        }
+         return (int) Math.ceil((double) totalElements / pageSize);
         }
 }
+
