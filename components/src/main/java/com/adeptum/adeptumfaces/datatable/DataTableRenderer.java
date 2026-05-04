@@ -38,6 +38,7 @@ public class DataTableRenderer extends Renderer {
                 int rows = table.getRows();
                 int page = Math.max(0, table.getPage());
 
+                if (data == null || var == null) { return; }
                 int totalPages = (int) Math.ceil((double) data.size() / rows);
 
                 if (page >= totalPages) {
@@ -48,10 +49,6 @@ public class DataTableRenderer extends Renderer {
                 int start = page * rows;
                 int end = Math.min(start + rows, data.size());
 
-                if (data == null || var == null) {
-                        return;
-                }
-                
                 if (start >= data.size()) {
                         table.setPage(0);
                         start = 0;

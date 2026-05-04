@@ -19,6 +19,11 @@ public class DataTable extends UIComponentBase {
         public String getRendererType() {
                 return DEFAULT_RENDERER;
         }
+        
+        @Override
+        public boolean getRendersChildren(){
+                return true;
+        }
 
         public Object getValue() {
                 return getStateHelper().eval("value");

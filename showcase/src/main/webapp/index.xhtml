@@ -37,36 +37,38 @@
 			</a:commandbutton>
 		</h:form>
 
-                <div class="card">
-			<a:datatable id="myTable" value="#{basicView.products}" var="product" rows="5">
-				<f:facet name="header">
-					List of Products
-				</f:facet>
+                <h:form>
+                        <div class="card">
+                                <a:datatable id="myTable" value="#{basicView.products}" var="product" rows="5">
+                                        <f:facet name="header">
+                                                List of Products
+                                        </f:facet>
 
-				<h:column>
-					<f:facet name="header">Code</f:facet>
-					<h:outputText value="#{product.code}" />
-				</h:column>
+                                        <h:column>
+                                                <f:facet name="header">Code</f:facet>
+                                                <h:outputText value="#{product.code}" />
+                                        </h:column>
 
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{product.name}" />
-				</h:column>
+                                        <h:column>
+                                                <f:facet name="header">Name</f:facet>
+                                                <h:outputText value="#{product.name}" />
+                                        </h:column>
 
-				<h:column>
-					<f:facet name="header">Category</f:facet>
-					<h:outputText value="#{product.category}" />
-				</h:column>
+                                        <h:column>
+                                                <f:facet name="header">Category</f:facet>
+                                                <h:outputText value="#{product.category}" />
+                                        </h:column>
 
-				<h:column>
-					<f:facet name="header">Quantity</f:facet>
-					<h:outputText value="#{product.quantity}" />
-				</h:column>
+                                        <h:column>
+                                                <f:facet name="header">Quantity</f:facet>
+                                                <h:outputText value="#{product.quantity}" />
+                                        </h:column>
 
-				<f:facet name="footer">
-					<h:outputText value="In total there are #{fn:length(basicView.products)} products." />
-				</f:facet>
-			</a:datatable>
-		</div>
+                                        <f:facet name="footer">
+                                                <h:outputText value="In total there are #{fn:length(basicView.products)} products." />
+                                        </f:facet>
+                                </a:datatable>
+                        </div>
+                </h:form>
 	</h:body>
 </html>
