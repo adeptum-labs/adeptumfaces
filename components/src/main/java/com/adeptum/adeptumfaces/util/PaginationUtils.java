@@ -11,15 +11,15 @@ public class PaginationUtils {
         
         public static <T> Page<T> paginate(List<T> data, int first, int pageSize) {
                 int total = data.size();
-                int toIndex = Math.min(first + pageSize, total);
-
-                if (first > total) {
-                        first = 0;
+             if (first > total) {
+                first = 0;
                 }
 
+                int toIndex = Math.min(first + pageSize, total);
+                
                 List<T> pageContent = data.subList(first, toIndex);
 
-                return new Page<>(pageContent, total, first, pageSize);
+                return new Page<>(pageContent, total, pageSize, first);
         }
         
 }
